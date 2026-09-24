@@ -1,22 +1,4 @@
-import os, sqlite3, sys, tempfile
-import pytest
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from demo_app import create_app  # noqa: E402
-
-
-@pytest.fixture
-def client():
-    db = os.path.join(tempfile.mkdtemp(), "t.db")
-    app = create_app(db)
-    app.config["TESTING"] = True
-    conn = sqlite3.connect(db)
-    conn.execute("INSERT INTO students(name,usn,dept) VALUES('Asha','1VU23CS001','CSE')")
-    conn.commit(); conn.close()
-    with app.test_client() as c:
-        with c.session_transaction() as s:
-            s["csrf"] = "tok"
-        yield c
+import pytest  # noqa: F401  (client fixture comes from conftest.py)
 
 
 def post(c, url, **data):

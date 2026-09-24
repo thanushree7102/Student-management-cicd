@@ -2,7 +2,7 @@
 
 Owner: Thanushree (Admin). Files owned by this module only:
 `admin.py`, `templates/admin/`, `static/admin.css`, `static/admin.js`, `tests/test_admin.py`
-(`demo_app.py` is a local test harness, not part of the real app).
+(Tests use `tests/conftest.py`; no separate demo app is needed.)
 
 ## Integration (2 lines in the main app.py)
 ```python
