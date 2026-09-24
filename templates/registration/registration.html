@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/registration.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Student Registration</h1>
+    <p class="subtitle">Enter the student details below</p>
+
+    <form id="registrationForm">
+
+        <h2>Basic Information</h2>
+
+        <label for="name">Student Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="usn">USN</label>
+        <input type="text" id="usn" name="usn" required>
+
+        <label for="date_of_birth">Date of Birth</label>
+        <input type="date" id="date_of_birth" name="date_of_birth" required>
+
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" required>
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <h2>Academic Information</h2>
+
+        <label for="department">Department</label>
+        <select id="department" name="department" required>
+            <option value="">Select Department</option>
+            <option value="CSE">CSE</option>
+            <option value="ISE">ISE</option>
+            <option value="ECE">ECE</option>
+            <option value="ME">Mechanical Engineering</option>
+            <option value="CIVIL">Civil Engineering</option>
+        </select>
+
+        <label for="semester">Semester</label>
+        <select id="semester" name="semester" required>
+            <option value="">Select Semester</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+        </select>
+
+        <label for="section">Section</label>
+        <select id="section" name="section" required>
+            <option value="">Select Section</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+        </select>
+
+        <label for="admission_year">Admission Year</label>
+        <input type="number" id="admission_year" name="admission_year" min="2000" max="2100" required>
+
+        <h2>Contact Information</h2>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+
+        <label for="address">Address</label>
+        <textarea id="address" name="address" rows="4" required></textarea>
+
+        <h2>Parent / Guardian Information</h2>
+
+        <label for="parent_name">Parent / Guardian Name</label>
+        <input type="text" id="parent_name" name="parent_name" required>
+
+        <label for="parent_phone">Parent / Guardian Phone</label>
+        <input type="tel" id="parent_phone" name="parent_phone" pattern="[0-9]{10}" required>
+
+        <button type="submit">Register Student</button>
+
+        <p id="message"></p>
+
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='js/registration.js') }}"></script>
+</body>
+</html>
