@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Admin{% endblock %} | Student Management</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body class="admin">
+  <header class="a-nav">
+    <span class="a-brand">Admin Panel</span>
+    <nav>
+      {% if session.admin %}
+        <a href="{{ url_for('admin.dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('admin.students') }}">Manage Students</a>
+        <a href="{{ url_for('admin.export') }}">Export CSV</a>
+        <a href="{{ url_for('admin.password') }}">Change Password</a>
+        <form method="POST" action="{{ url_for('admin.logout') }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button type="submit" class="a-logout">Logout ({{ session.admin }})</button>
+        </form>
+      {% endif %}
+    </nav>
+  </header>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for cat, msg in messages %}<div class="a-flash {{ cat }}">{{ msg }}</div>{% endfor %}
+  {% endwith %}
+  <main class="a-card {% block size %}{% endblock %}">{% block content %}{% endblock %}</main>
+  <script src="{{ url_for('static', filename='admin.js') }}"></script>
+</body>
+</html>

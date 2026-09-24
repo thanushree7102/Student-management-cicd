@@ -1,0 +1,25 @@
+{% extends "admin/base.html" %}
+{% block title %}Manage Students{% endblock %}
+{% block size %}wide{% endblock %}
+{% block content %}
+<h2>Manage Students</h2>
+<form method="GET" action="{{ url_for('admin.students') }}" class="a-search">
+  <input type="text" name="q" value="{{ q }}" placeholder="Search name, USN or department">
+  <input type="submit" value="Search">
+</form>
+<table>
+  <tr><th>ID</th><th>Name</th><th>USN</th><th>Department</th><th>Actions</th></tr>
+  {% for s in students %}
+  <tr>
+    <td>{{ s.id }}</td><td>{{ s.name }}</td><td>{{ s.usn }}</td><td>{{ s.dept }}</td>
+    <td class="a-actions">
+      <a class="a-btn edit" href="{{ url_for('admin.edit', sid=s.id) }}">Edit</a>
+      <form method="POST" action="{{ url_for('admin.delete', sid=s.id) }}" class="confirm-delete">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button class="a-btn del" type="submit">Delete</button>
+      </form>
+    </td>
+  </tr>
+  {% else %}<tr><td colspan="5" class="a-empty">No students found</td></tr>{% endfor %}
+</table>
+{% endblock %}
