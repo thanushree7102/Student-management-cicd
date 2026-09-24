@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Records</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/records.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>Student Records</h1>
+            <p>View and search registered students</p>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput"
+                   placeholder="Search by name, USN or department...">
+            <button onclick="searchStudents()">Search</button>
+        </div>
+
+        <div class="records-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Student Name</th>
+                        <th>USN</th>
+                        <th>Department</th>
+                    </tr>
+                </thead>
+
+                <tbody id="studentTableBody">
+                </tbody>
+            </table>
+
+            <p id="noRecords" class="no-records">
+                No student records found.
+            </p>
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/records.js') }}"></script>
+
+</body>
+</html>
